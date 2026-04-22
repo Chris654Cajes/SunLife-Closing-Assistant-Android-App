@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunLife Closing Assistant - User Manual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #F57C00;
+            --primary-dark: #E65100;
+            --primary-light: #FFB300;
+            --accent: #FFD600;
+            --accent-dark: #C7A500;
+            --background: #F5F6FA;
+            --surface: #FFFFFF;
+            --card-background: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #F57C00;
+            --text-hint: #9E9E9E;
+            --text-on-primary: #FFFFFF;
+            --success: #00C853;
+            --warning: #FF6D00;
+            --error: #D50000;
+            --progress-track: #E8EAF6;
+            --progress-indicator: #F57C00;
+            --divider: #E0E0E0;
+            --chip-family: #FCE4EC;
+            --chip-family-text: #880E4F;
+            --chip-security: #E8F5E9;
+            --chip-security-text: #1B5E20;
+            --chip-future: #FFF3E0;
+            --chip-future-text: #E65100;
+            --chip-legacy: #FFF3E0;
+            --chip-legacy-text: #E65100;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--text-on-primary);
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            letter-spacing: 0.08;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--surface);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            border-bottom-color: var(--accent);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-background);
+            border-radius: 16px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .card-icon {
+            background: var(--primary);
+            color: var(--text-on-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.12;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            margin-right: 12px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-track);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Step Indicators */
+        .step-indicator {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text-on-primary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        /* Chips */
+        .chip {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 4px;
+        }
+
+        .chip-family {
+            background: var(--chip-family);
+            color: var(--chip-family-text);
+        }
+
+        .chip-security {
+            background: var(--chip-security);
+            color: var(--chip-security-text);
+        }
+
+        .chip-future {
+            background: var(--chip-future);
+            color: var(--chip-future-text);
+        }
+
+        .chip-legacy {
+            background: var(--chip-legacy);
+            color: var(--chip-legacy-text);
+        }
+
+        /* Screenshots */
+        .screenshot {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 16px 0;
+            border: 8px solid var(--surface);
+        }
+
+        .screenshot-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .screenshot-caption {
+            font-size: 0.9rem;
+            color: var(--text-hint);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateX(4px);
+        }
+
+        .feature-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-hint);
+            font-size: 0.95rem;
+        }
+
+        /* Tips Box */
+        .tips-box {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFF3E0 100%);
+            border-left: 4px solid var(--accent);
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .tips-title {
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tips-title::before {
+            content: '!';
+            background: var(--accent);
+            color: var(--text-primary);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .table th {
+            background: var(--primary);
+            color: var(--text-on-primary);
+            font-weight: 500;
+        }
+
+        .table tr:hover {
+            background: rgba(245, 124, 0, 0.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: var(--text-on-primary);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .nav-list {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                border-bottom: 1px solid var(--divider);
+                border-left: 3px solid transparent;
+            }
+
+            .nav-item:hover {
+                border-left-color: var(--primary);
+                border-bottom-color: transparent;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .screenshot {
+                max-width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav,
+            .footer {
+                display: none;
+            }
+
+            .header {
+                background: none;
+                color: var(--text-primary);
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid var(--divider);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>SunLife Closing Assistant</h1>
+                <p>Your Taglish Sales Flow Companion</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item active" onclick="scrollToSection('overview')">Overview</li>
+                <li class="nav-item" onclick="scrollToSection('getting-started')">Getting Started</li>
+                <li class="nav-item" onclick="scrollToSection('features')">Features</li>
+                <li class="nav-item" onclick="scrollToSection('user-guide')">User Guide</li>
+                <li class="nav-item" onclick="scrollToSection('troubleshooting')">Troubleshooting</li>
+                <li class="nav-item" onclick="scrollToSection('support')">Support</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Overview Section -->
+            <section id="overview" class="fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span class="material-icons">info</span>
+                        </div>
+                        <h2 class="card-title">Overview</h2>
+                    </div>
+                    
+                    <p>SunLife Closing Assistant is a comprehensive mobile application designed specifically for insurance and financial advisors in the Philippines. This Taglish sales flow assistant helps streamline the client consultation process with personalized scripts and recommendations.</p>
+                    
+                    <div class="screenshot-container">
+                        <div style="background: linear-gradient(135deg, #F57C00 0%, #FFB300 100%); border-radius: 16px; padding: 40px; color: white; text-align: center; max-width: 300px; margin: 0 auto;">
+                            <h3 style="font-size: 24px; margin-bottom: 8px;">SunLife Closing Assistant</h3>
+                            <p style="font-size: 14px; opacity: 0.9;">Your Taglish Sales Flow Companion</p>
+                            <div style="width: 40px; height: 40px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; margin: 20px auto; animation: spin 1s linear infinite;"></div>
+                        </div>
+                        <p class="screenshot-caption">Splash Screen</p>
+                    </div>
+
+                    <div class="section-header">KEY BENEFITS</div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Taglish Scripts</div>
+                            <div class="feature-description">Natural conversational scripts in Taglish that resonate with Filipino clients</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Personalized Recommendations</div>
+                            <div class="feature-description">AI-powered suggestions based on client profile and needs</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Step-by-Step Guidance</div>
+                            <div class="feature-description">6-step sales flow with progress tracking and tips</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Getting Started Section -->
+            <section id="getting-started" class="fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span class="material-icons">rocket_launch</span>
+                        </div>
+                        <h2 class="card-title">Getting Started</h2>
+                    </div>
+
+                    <div class="section-header">INSTALLATION</div>
+                    <ol>
+                        <li>Download the APK from the provided source</li>
+                        <li>Enable "Install from unknown sources" in your device settings</li>
+                        <li>Tap the APK file to begin installation</li>
+                        <li>Follow the on-screen prompts</li>
+                        <li>Launch the app once installation is complete</li>
+                    </ol>
+
+                    <div class="section-header">FIRST TIME SETUP</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 33%;"></div>
+                    </div>
+                    <p><span class="step-indicator">Step 1</span> Create your account or login with existing credentials</p>
+                    <p><span class="step-indicator">Step 2</span> Complete your advisor profile</p>
+                    <p><span class="step-indicator">Step 3</span> Start your first client consultation</p>
+
+                    <div class="tips-box">
+                        <div class="tips-title">Pro Tip</div>
+                        <p>Ensure you have a stable internet connection during initial setup for Firebase authentication and data synchronization.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span class="material-icons">stars</span>
+                        </div>
+                        <h2 class="card-title">Features</h2>
+                    </div>
+
+                    <div class="section-header">CORE FEATURES</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Description</th>
+                                <th>Benefit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Client Profile Management</td>
+                                <td>Store and manage client information securely</td>
+                                <td>Quick access to client data</td>
+                            </tr>
+                            <tr>
+                                <td>6-Step Sales Flow</td>
+                                <td>Guided consultation process with scripts</td>
+                                <td>Structured client meetings</td>
+                            </tr>
+                            <tr>
+                                <td>Smart Recommendations</td>
+                                <td>AI-powered product suggestions</td>
+                                <td>Increased conversion rates</td>
+                            </tr>
+                            <tr>
+                                <td>Progress Tracking</td>
+                                <td>Visual progress indicators</td>
+                                <td>Better meeting management</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-header">TRIGGER CHIPS</div>
+                    <div style="text-align: center; margin: 20px 0;">
+                        <span class="chip chip-family">Family Protection</span>
+                        <span class="chip chip-security">Security</span>
+                        <span class="chip chip-future">Future Planning</span>
+                        <span class="chip chip-legacy">Legacy Building</span>
+                    </div>
+                    <p>These emotional triggers help tailor the conversation to your client's specific needs and concerns.</p>
+                </div>
+            </section>
+
+            <!-- User Guide Section -->
+            <section id="user-guide" class="fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span class="material-icons">menu_book</span>
+                        </div>
+                        <h2 class="card-title">User Guide</h2>
+                    </div>
+
+                    <div class="section-header">APP WORKFLOW</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 100%;"></div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 20px 0;">
+                        <div style="text-align: center; padding: 20px; background: #F5F6FA; border-radius: 12px;">
+                            <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: white;">
+                                <span class="material-icons">login</span>
+                            </div>
+                            <h4>1. Login</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-hint);">Authenticate with your credentials</p>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: #F5F6FA; border-radius: 12px;">
+                            <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: white;">
+                                <span class="material-icons">person</span>
+                            </div>
+                            <h4>2. Client Profile</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-hint);">Enter client information</p>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: #F5F6FA; border-radius: 12px;">
+                            <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: white;">
+                                <span class="material-icons">chat</span>
+                            </div>
+                            <h4>3. Sales Flow</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-hint);">Follow guided conversation</p>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: #F5F6FA; border-radius: 12px;">
+                            <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; color: white;">
+                                <span class="material-icons">recommend</span>
+                            </div>
+                            <h4>4. Recommendation</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-hint);">View and save recommendations</p>
+                        </div>
+                    </div>
+
+                    <div class="section-header">CLIENT PROFILE FORM</div>
+                    <div class="screenshot-container">
+                        <div style="background: white; border-radius: 16px; padding: 20px; max-width: 300px; margin: 0 auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div style="background: linear-gradient(135deg, #F57C00 0%, #FFB300 100%); color: white; padding: 12px; border-radius: 8px; margin-bottom: 16px; text-align: center;">
+                                <div style="font-size: 12px; opacity: 0.8;">Step 1 of 3</div>
+                                <div style="font-weight: 500;">Client Profile</div>
+                            </div>
+                            <div style="margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: #F57C00; margin-bottom: 4px;">BASIC INFORMATION</div>
+                                <div style="background: #F5F5F5; padding: 8px; border-radius: 4px; margin-bottom: 8px; font-size: 14px;">Age: [Input Field]</div>
+                                <div style="background: #F5F5F5; padding: 8px; border-radius: 4px; margin-bottom: 8px; font-size: 14px;">Monthly Income: [Input Field]</div>
+                                <div style="background: #F5F5F5; padding: 8px; border-radius: 4px; font-size: 14px;">Dependents: [Input Field]</div>
+                            </div>
+                            <div style="background: var(--primary); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                Next <span style="float: right;">></span>
+                            </div>
+                        </div>
+                        <p class="screenshot-caption">Client Profile Input Screen</p>
+                    </div>
+
+                    <div class="section-header">SALES FLOW NAVIGATION</div>
+                    <p>The sales flow consists of 6 steps, each with specific scripts and tips:</p>
+                    <ol>
+                        <li><strong>Opening</strong> - Build rapport and set expectations</li>
+                        <li><strong>Discovery</strong> - Understand client needs and concerns</li>
+                        <li><strong>Solution</strong> - Present tailored recommendations</li>
+                        <li><strong>Benefits</strong> - Highlight key advantages</li>
+                        <li><strong>Objections</strong> - Address client concerns</li>
+                        <li><strong>Closing</strong> - Finalize the consultation</li>
+                    </ol>
+
+                    <div class="tips-box">
+                        <div class="tips-title">Navigation Tips</div>
+                        <p>Use the Previous and Next buttons to navigate between steps. The progress bar at the top shows your current position in the flow.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Troubleshooting Section -->
+            <section id="troubleshooting" class="fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span class="material-icons">build</span>
+                        </div>
+                        <h2 class="card-title">Troubleshooting</h2>
+                    </div>
+
+                    <div class="section-header">COMMON ISSUES</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Cause</th>
+                                <th>Solution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Login Failed</td>
+                                <td>Incorrect credentials or no internet</td>
+                                <td>Check credentials and connection</td>
+                            </tr>
+                            <tr>
+                                <td>Data Not Saving</td>
+                                <td>Poor internet connection</td>
+                                <td>Ensure stable connection and retry</td>
+                            </tr>
+                            <tr>
+                                <td>App Crashes</td>
+                                <td>Outdated app version</td>
+                                <td>Update to latest version</td>
+                            </tr>
+                            <tr>
+                                <td>Slow Performance</td>
+                                <td>Low device storage</td>
+                                <td>Clear cache and free up space</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-header">ERROR MESSAGES</div>
+                    <div style="background: #FFEBEE; border-left: 4px solid var(--error); padding: 12px; border-radius: 4px; margin: 8px 0;">
+                        <strong>"Authentication Failed"</strong> - Check your email and password
+                    </div>
+                    <div style="background: #FFF3E0; border-left: 4px solid var(--warning); padding: 12px; border-radius: 4px; margin: 8px 0;">
+                        <strong>"Network Error"</strong> - Check your internet connection
+                    </div>
+                    <div style="background: #E8F5E9; border-left: 4px solid var(--success); padding: 12px; border-radius: 4px; margin: 8px 0;">
+                        <strong>"Data Saved Successfully"</strong> - Operation completed
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Section -->
+            <section id="support" class="fade-in">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <span class="material-icons">support_agent</span>
+                        </div>
+                        <h2 class="card-title">Support</h2>
+                    </div>
+
+                    <div class="section-header">CONTACT INFORMATION</div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Email Support</div>
+                            <div class="feature-description">support@sunlife-closing-assistant.com</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Phone Support</div>
+                            <div class="feature-description">+63 2 8888 8888</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Office Hours</div>
+                            <div class="feature-description">Monday - Friday, 9:00 AM - 6:00 PM PHT</div>
+                        </div>
+                    </div>
+
+                    <div class="section-header">FREQUENTLY ASKED QUESTIONS</div>
+                    <div style="margin: 20px 0;">
+                        <div style="margin-bottom: 16px;">
+                            <strong>Q: Is my data secure?</strong><br>
+                            A: Yes, all data is encrypted and stored securely on Firebase servers with role-based access control.
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <strong>Q: Can I use the app offline?</strong><br>
+                            A: Limited functionality is available offline, but internet connection is required for data synchronization.
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <strong>Q: How often is the app updated?</strong><br>
+                            A: Regular updates are released monthly with new features and improvements.
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <div class="tips-title">Best Practices</div>
+                        <ul>
+                            <li>Always keep your app updated to the latest version</li>
+                            <li>Regularly backup your client data</li>
+                            <li>Use strong, unique passwords for your account</li>
+                            <li>Enable two-factor authentication when available</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 SunLife Closing Assistant. All rights reserved.</p>
+            <p>Version 1.0.0 | Built with Kotlin, Firebase, and Material Design</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update active nav item
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add CSS animation for spinner
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Update active nav item on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('onclick').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<resources>
+    <style name="Theme.ClosingAssistant" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#1A237E</item>
+        <item name="colorPrimaryVariant">#000051</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#FFD600</item>
+        <item name="android:colorBackground">#F5F6FA</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="android:statusBarColor">#000051</item>
+    </style>
+    <style name="Theme.ClosingAssistant.Splash" parent="Theme.ClosingAssistant">
+        <item name="android:windowBackground">@color/primary</item>
+    </style>
+</resources>

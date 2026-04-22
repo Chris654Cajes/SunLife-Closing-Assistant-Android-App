@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary">#F57C00</color>
+    <color name="primary_dark">#E65100</color>
+    <color name="primary_light">#FFB300</color>
+    <color name="accent">#FFD600</color>
+    <color name="accent_dark">#C7A500</color>
+
+    <!-- Surfaces -->
+    <color name="white">#FFFFFF</color>
+    <color name="background">#F5F6FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#F57C00</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Status -->
+    <color name="success">#00C853</color>
+    <color name="warning">#FF6D00</color>
+    <color name="error">#D50000</color>
+
+    <!-- Progress -->
+    <color name="progress_track">#E8EAF6</color>
+    <color name="progress_indicator">#F57C00</color>
+
+    <!-- Divider -->
+    <color name="divider">#E0E0E0</color>
+
+    <!-- Trigger chip colors -->
+    <color name="chip_family">#FCE4EC</color>
+    <color name="chip_family_text">#880E4F</color>
+    <color name="chip_security">#E8F5E9</color>
+    <color name="chip_security_text">#1B5E20</color>
+    <color name="chip_future">#FFF3E0</color>
+    <color name="chip_future_text">#E65100</color>
+    <color name="chip_legacy">#FFF3E0</color>
+    <color name="chip_legacy_text">#E65100</color>
+</resources>

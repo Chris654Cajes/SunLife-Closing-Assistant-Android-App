@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Closing Assistant</string>
+    <string name="client_profile_title">Client Profile</string>
+    <string name="sales_flow_title">Sales Flow</string>
+    <string name="recommendation_title">Recommendation</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_next_step">Next Step</string>
+    <string name="hint_age">Age</string>
+    <string name="hint_monthly_income">Monthly Income (PHP)</string>
+    <string name="hint_dependents">Number of Dependents</string>
+    <string name="hint_financial_goals">Financial Goals</string>
+    <string name="hint_concerns">Concerns / Objections</string>
+    <string name="label_suggested_plan">Suggested Plan</string>
+    <string name="label_talking_points">Key Talking Points</string>
+    <string name="label_emotional_triggers">Emotional Triggers</string>
+    <string name="label_step_of">Step %1$d of %2$d</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="msg_saving">Saving profile…</string>
+    <string name="msg_generating">Generating your script…</string>
+    <string name="btn_view_recommendation">View Recommendation</string>
+    <string name="btn_save_client">Save Client</string>
+    <string name="app_tagline">Close more. Stress less.</string>
+</resources>

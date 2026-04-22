@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Briefcase icon representing sales/closing -->
+    <path
+        android:fillColor="#FFD600"
+        android:pathData="M40,38 L40,32 Q40,28 44,28 L64,28 Q68,28 68,32 L68,38 L76,38 Q80,38 80,42 L80,72 Q80,76 76,76 L32,76 Q28,76 28,72 L28,42 Q28,38 32,38 Z M46,38 L62,38 L62,34 L46,34 Z M28,52 L80,52" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,58 Q54,62 58,58"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2" />
+</vector>
